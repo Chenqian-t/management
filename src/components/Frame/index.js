@@ -1,11 +1,27 @@
 import React, { Component } from 'react'
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Dropdown} from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
 
 import { adminRoutes } from '../../routes';
+import logo from './logo.png';
+import './frame.less';
 
 const { Header, Content, Sider } = Layout;
+
+const menu = (
+    <Menu>
+        <Menu.Item key="0">
+            未读消息
+        </Menu.Item>
+        <Menu.Item key="1">
+            个人设置
+        </Menu.Item>
+        <Menu.Item key="3">
+            推出登录
+        </Menu.Item>
+    </Menu>
+);
 
 // 添加路由的属性，跳转页面
 @withRouter
@@ -16,8 +32,17 @@ class Frame extends Component {
     render() {
         return (
             <Layout>
-                <Header className="header">
-                    <div className="logo" ></div>
+                <Header className="cq-header">
+                    <div className="cq-logo" >
+                        <img src={logo} alt='' />
+                        <div>
+                            <Dropdown overlay={menu} trigger={['click']}>
+                                <span>
+                                    欢迎您，XXX！
+                                </span>
+                            </Dropdown>
+                        </div>
+                    </div>
                 </Header>
                 <Layout>
                     <Sider width={150} className="site-layout-background">

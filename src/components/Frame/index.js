@@ -9,26 +9,31 @@ import './frame.less';
 
 const { Header, Content, Sider } = Layout;
 
-const menu = (
-    <Menu>
-        <Menu.Item key="0">
-            未读消息
-        </Menu.Item>
-        <Menu.Item key="1">
-            个人设置
-        </Menu.Item>
-        <Menu.Item key="3">
-            推出登录
-        </Menu.Item>
-    </Menu>
-);
-
 // 添加路由的属性，跳转页面
 @withRouter
 class Frame extends Component {
+    onDropdownMenuClick = ({ key })=> {
+        this.props.history.push(key)
+    }
+
     onMenuClick = ({ key }) => {
         this.props.history.push(key)
     }
+
+    menu = (
+        <Menu onClick={this.onDropdownMenuClick}>
+            <Menu.Item key="0">
+                未读消息
+            </Menu.Item>
+            <Menu.Item key="/admin/setting">
+                个人设置
+            </Menu.Item>
+            <Menu.Item key="3">
+                推出登录
+            </Menu.Item>
+        </Menu>
+    );
+    
     render() {
         return (
             <Layout>
@@ -36,7 +41,7 @@ class Frame extends Component {
                     <div className="cq-logo" >
                         <img src={logo} alt='' />
                         <div>
-                            <Dropdown overlay={menu} trigger={['click']}>
+                            <Dropdown overlay={this.menu} trigger={['click']}>
                                 <span>
                                     欢迎您，XXX！
                                 </span>

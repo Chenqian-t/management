@@ -25,3 +25,8 @@ ajax.interceptors.response.use((resp) => {
 export const getGoodsInfo = () => {
     return ajax.post('/api/v1/goodsInfo')
 }
+
+// 登录
+export const login = (userInfo) => {
+    return ajax.post('/api/v1/users', userInfo)
+}

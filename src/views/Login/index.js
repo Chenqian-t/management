@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Checkbox, Card } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './login.less';
+import { loginAction } from '../../actions/user';
 
+const mapState = state => {
+    return {
+        isLogin: state.user.isLogin,
+        isLoading: state.user.isLoading,
+    }
+}
 
-export default class Login extends Component {
+@connect(mapState, { loginAction })
+class Login extends Component {
     onFinish = values => {
-        console.log('Received values of form: ', values);
+        this.props.loginAction(values)
     }
     render() {
         return (
-            <Card className='cq-card'>
+            this.props.isLogin ?
+            <Redirect to='/admin' /> :
+            <Card className='cq-card' title='西西甜点'>
                 <Form
                     name="normal_login"
                     className="login-form"
@@ -22,23 +34,19 @@ export default class Login extends Component {
                 >
                     <Form.Item
                         name="username"
-                        rules={[
-                        {
+                        rules={[{
                             required: true,
                             message: '请输入用户名!',
-                        },
-                        ]}
+                        },]}
                     >
                         <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="用户名" />
                     </Form.Item>
                     <Form.Item
                         name="password"
-                        rules={[
-                        {
+                        rules={[{
                             required: true,
                             message: '请输入密码!',
-                        },
-                        ]}
+                        },]}
                     >
                         <Input
                             prefix={<LockOutlined className="site-form-item-icon" />}
@@ -50,12 +58,15 @@ export default class Login extends Component {
                         <Form.Item name="remember" valuePropName="checked" noStyle>
                             <Checkbox>记住我</Checkbox>
                         </Form.Item>
-                        <a className="login-form-forgot" href="">
-                            忘记密码
-                        </a>
+                        忘记密码
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className="login-form-button">
+                        <Button
+                            loading={this.props.isLoading}
+                            type="primary"
+                            htmlType="submit"
+                            className="login-form-button"
+                        >
                             登录
                         </Button>
                         <Button style={{margin: '0 0 0 20px', }}>
@@ -67,3 +78,5 @@ export default class Login extends Component {
         )
     }
 }
+
+export default Login

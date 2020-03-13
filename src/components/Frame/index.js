@@ -2,18 +2,27 @@ import React, { Component } from 'react'
 import { Layout, Menu, Dropdown, Modal } from 'antd';
 import { CaretRightOutlined, ExclamationOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { adminRoutes } from '../../routes';
 import logo from './logo.png';
 import './frame.less';
+import { logoutAction } from '../../actions/user';
 
 const { Header, Content, Sider } = Layout;
 
+const mapState = state => {
+    return {
+        displayName: state.user.displayName
+    }
+}
+
+@connect(mapState, { logoutAction })
 // 添加路由的属性，跳转页面
 @withRouter
 class Frame extends Component {
     onDropdownMenuClick = ({ key })=> {
-        if(key === "/login") {
+        if(key === "/logout") {
             Modal.confirm({
                 cancelText: '取消',
                 okText: '确认退出',
@@ -22,7 +31,7 @@ class Frame extends Component {
                 content: '是否确定要退出登录?',
                 icon: <ExclamationOutlined style={{color: 'red' }} />,
                 onOk: () => {
-                    this.props.history.push(key)
+                    this.props.logoutAction()
                 },
             })
         } else this.props.history.push(key)
@@ -40,7 +49,7 @@ class Frame extends Component {
             <Menu.Item key="/admin/setting">
                 个人设置
             </Menu.Item>
-            <Menu.Item key="/login">
+            <Menu.Item key="/logout">
                 退出登录
             </Menu.Item>
         </Menu>
@@ -56,7 +65,7 @@ class Frame extends Component {
                     <div>
                         <Dropdown overlay={this.menu} trigger={['click']}>
                             <span>
-                                欢迎您，XXX！
+                                欢迎您，{this.props.displayName}！
                             </span>
                         </Dropdown>
                     </div>

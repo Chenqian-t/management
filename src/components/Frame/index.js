@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Layout, Menu, Dropdown} from 'antd';
-import { CaretRightOutlined } from '@ant-design/icons';
+import { Layout, Menu, Dropdown, Modal } from 'antd';
+import { CaretRightOutlined, ExclamationOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
 
 import { adminRoutes } from '../../routes';
@@ -13,7 +13,19 @@ const { Header, Content, Sider } = Layout;
 @withRouter
 class Frame extends Component {
     onDropdownMenuClick = ({ key })=> {
-        this.props.history.push(key)
+        if(key === "/login") {
+            Modal.confirm({
+                cancelText: '取消',
+                okText: '确认退出',
+                okType: 'danger',
+                title: '【退出登录】',
+                content: '是否确定要退出登录?',
+                icon: <ExclamationOutlined style={{color: 'red' }} />,
+                onOk: () => {
+                    this.props.history.push(key)
+                },
+            })
+        } else this.props.history.push(key)
     }
 
     onMenuClick = ({ key }) => {
@@ -28,8 +40,8 @@ class Frame extends Component {
             <Menu.Item key="/admin/setting">
                 个人设置
             </Menu.Item>
-            <Menu.Item key="3">
-                推出登录
+            <Menu.Item key="/login">
+                退出登录
             </Menu.Item>
         </Menu>
     );
@@ -40,13 +52,13 @@ class Frame extends Component {
                 <Header className="cq-header">
                     <div className="cq-logo" >
                         <img src={logo} alt='' />
-                        <div>
-                            <Dropdown overlay={this.menu} trigger={['click']}>
-                                <span>
-                                    欢迎您，XXX！
-                                </span>
-                            </Dropdown>
-                        </div>
+                    </div>
+                    <div>
+                        <Dropdown overlay={this.menu} trigger={['click']}>
+                            <span>
+                                欢迎您，XXX！
+                            </span>
+                        </Dropdown>
                     </div>
                 </Header>
                 <Layout>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Select, card, Card } from 'antd';
+import { Form, Input, Button, Select, Card } from 'antd';
 
 const { Option } = Select;
 

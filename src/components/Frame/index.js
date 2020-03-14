@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Layout, Menu, Dropdown, Modal } from 'antd';
+import { Layout, Menu, Dropdown, Modal, Avatar } from 'antd';
 import { CaretRightOutlined, ExclamationOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -13,7 +13,8 @@ const { Header, Content, Sider } = Layout;
 
 const mapState = state => {
     return {
-        displayName: state.user.displayName
+        displayName: state.user.displayName,
+        avatar: state.user.avatar,
     }
 }
 
@@ -64,7 +65,8 @@ class Frame extends Component {
                     </div>
                     <div>
                         <Dropdown overlay={this.menu} trigger={['click']}>
-                            <span>
+                            <span style={{textAlign: 'center'}}>
+                                <Avatar src={this.props.avatar} />
                                 欢迎您，{this.props.displayName}！
                             </span>
                         </Dropdown>

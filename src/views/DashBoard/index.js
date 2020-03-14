@@ -76,12 +76,12 @@ export default class DashBoard extends Component {
                     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                         <Col className="gutter-row" span={8}>
                             <div className="cq-gutter-box" >
-                                商品总数:{this.state.totalGoods}
+                                商品总数:{this.state.totalGoods}(种)
                             </div>
                         </Col>
                         <Col className="gutter-row" span={8}>
                             <div className="cq-gutter-box" >
-                                销售总量:{this.state.totalSales}
+                                销售总量:{this.state.totalSales}(份)
                             </div>
                         </Col>
                         <Col className="gutter-row" span={8}>

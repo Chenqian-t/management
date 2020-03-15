@@ -6,7 +6,7 @@ import './loading.less';
 export default class Loading extends Component {
     render() {
         return (
-            <div className='cq-box'>
+            <div className='cq-loading'>
                 <Spin size="large" />
             </div>
         )

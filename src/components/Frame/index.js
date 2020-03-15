@@ -59,7 +59,7 @@ class Frame extends Component {
     render() {
         return (
             <Layout>
-                <Header className="cq-header">
+                <Header className="frame-header">
                     <div className="cq-logo" >
                         <img src={logo} alt='' />
                     </div>

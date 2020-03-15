@@ -26,10 +26,10 @@ class HomePage extends Component {
     }
     render() {
         return (
-            <div className='cq-box'>
+            <div className='cq-homepage'>
                 <Layout>
                     <Header style={{backgroundColor: 'rgb(255, 255, 255)', borderBottom: '1px solid gray', padding: '0'}}>
-                        <div className='cq-header'>
+                        <div className='homepage-header'>
                             <div className='header-logo'>
                                 logo
                             </div>

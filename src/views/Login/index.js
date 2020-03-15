@@ -23,8 +23,8 @@ class Login extends Component {
         return (
             this.props.isLogin ?
             <Redirect to='/admin' /> :
-            <div className='cq-box'>
-                <Card className='cq-card' title='西西甜点'>
+            <div className='cq-login'>
+                <Card className='cq-card' title='西西甜点' extra={<Button>首页</Button>}>
                     <Form
                         name="normal_login"
                         className="login-form"
@@ -61,7 +61,7 @@ class Login extends Component {
                             </Form.Item>
                             忘记密码
                         </Form.Item>
-                        <Form.Item>
+                        <Form.Item className='login-button'>
                             <Button
                                 loading={this.props.isLoading}
                                 type="primary"

@@ -3,6 +3,7 @@ import { Form, Input, Button, Checkbox, Card } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import './login.less';
 import { loginAction } from '../../actions/user';
@@ -15,6 +16,7 @@ const mapState = state => {
 }
 
 @connect(mapState, { loginAction })
+@withRouter
 class Login extends Component {
     onFinish = values => {
         this.props.loginAction(values)
@@ -24,7 +26,11 @@ class Login extends Component {
             this.props.isLogin ?
             <Redirect to='/admin' /> :
             <div className='cq-login'>
-                <Card className='cq-card' title='西西甜点' extra={<Button>首页</Button>}>
+                <Card
+                    className='cq-card'
+                    title='西西甜点'
+                    extra={<Button onClick={() => this.props.history.push('/homepage')}>首页</Button>}
+                >
                     <Form
                         name="normal_login"
                         className="login-form"

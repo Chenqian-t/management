@@ -17,7 +17,7 @@ render(
                 {mainRoutes.map(item => {
                     return <Route key={item.pathname} path={item.pathname} component={item.component} />
                 })}
-                <Redirect exact to='/admin' from='/' />
+                <Redirect exact to='/homepage' from='/' />
                 <Redirect to='/404' />
             </Switch>
         </Router>

@@ -23,58 +23,60 @@ class Login extends Component {
         return (
             this.props.isLogin ?
             <Redirect to='/admin' /> :
-            <Card className='cq-card' title='西西甜点'>
-                <Form
-                    name="normal_login"
-                    className="login-form"
-                    initialValues={{
-                        remember: true,
-                    }}
-                    onFinish={this.onFinish}
-                >
-                    <Form.Item
-                        name="username"
-                        rules={[{
-                            required: true,
-                            message: '请输入用户名!',
-                        },]}
+            <div className='cq-box'>
+                <Card className='cq-card' title='西西甜点'>
+                    <Form
+                        name="normal_login"
+                        className="login-form"
+                        initialValues={{
+                            remember: true,
+                        }}
+                        onFinish={this.onFinish}
                     >
-                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="用户名" />
-                    </Form.Item>
-                    <Form.Item
-                        name="password"
-                        rules={[{
-                            required: true,
-                            message: '请输入密码!',
-                        },]}
-                    >
-                        <Input
-                            prefix={<LockOutlined className="site-form-item-icon" />}
-                            type="password"
-                            placeholder="密码"
-                        />
-                    </Form.Item>
-                    <Form.Item>
-                        <Form.Item name="remember" valuePropName="checked" noStyle>
-                            <Checkbox>记住我</Checkbox>
-                        </Form.Item>
-                        忘记密码
-                    </Form.Item>
-                    <Form.Item>
-                        <Button
-                            loading={this.props.isLoading}
-                            type="primary"
-                            htmlType="submit"
-                            className="login-form-button"
+                        <Form.Item
+                            name="username"
+                            rules={[{
+                                required: true,
+                                message: '请输入用户名!',
+                            },]}
                         >
-                            登录
-                        </Button>
-                        <Button style={{margin: '0 0 0 20px', }}>
-                            现在注册
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </Card>
+                            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="用户名" />
+                        </Form.Item>
+                        <Form.Item
+                            name="password"
+                            rules={[{
+                                required: true,
+                                message: '请输入密码!',
+                            },]}
+                        >
+                            <Input
+                                prefix={<LockOutlined className="site-form-item-icon" />}
+                                type="password"
+                                placeholder="密码"
+                            />
+                        </Form.Item>
+                        <Form.Item>
+                            <Form.Item name="remember" valuePropName="checked" noStyle>
+                                <Checkbox>记住我</Checkbox>
+                            </Form.Item>
+                            忘记密码
+                        </Form.Item>
+                        <Form.Item>
+                            <Button
+                                loading={this.props.isLoading}
+                                type="primary"
+                                htmlType="submit"
+                                className="login-form-button"
+                            >
+                                登录
+                            </Button>
+                            <Button style={{margin: '0 0 0 20px', }}>
+                                现在注册
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </Card>
+            </div>
         )
     }
 }
